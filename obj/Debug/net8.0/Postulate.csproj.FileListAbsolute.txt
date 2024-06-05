@@ -286,3 +286,4 @@ C:\Users\BANGHO\Desktop\Programacion 3\Postulate\obj\Debug\net8.0\refint\Postula
 C:\Users\BANGHO\Desktop\Programacion 3\Postulate\obj\Debug\net8.0\Postulate.pdb
 C:\Users\BANGHO\Desktop\Programacion 3\Postulate\obj\Debug\net8.0\Postulate.genruntimeconfig.cache
 C:\Users\BANGHO\Desktop\Programacion 3\Postulate\obj\Debug\net8.0\ref\Postulate.dll
+C:\Users\BANGHO\Desktop\Programacion 3\Postulate\obj\Debug\net8.0\Postulate.sourcelink.json

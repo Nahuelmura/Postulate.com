@@ -13,4 +13,6 @@ public class Servicio
     public string? Descripcion  { get; set; }
     public string? Titulo { get; set; }
     public string? Institucion { get; set; }
+    public virtual Persona Persona { get; set; }
+    public virtual Profesion Profesion { get; set; }
 }

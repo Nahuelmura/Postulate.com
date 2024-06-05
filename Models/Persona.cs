@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Azure.Identity;
 
 namespace Postulate.Models;
 
@@ -13,4 +14,6 @@ public class Persona
     public int Telefono { get; set; }
     public int Documento { get; set; }
     public string? Email { get; set; }
+    public virtual Localidad Localidad { get; set;}
+    public virtual Provincia Provincia { get; set; }
 }
