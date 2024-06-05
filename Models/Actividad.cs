@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Postulatea.Models;
+namespace Postulate.Models;
 
 public class Actividad 
 {

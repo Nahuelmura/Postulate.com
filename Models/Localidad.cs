@@ -9,4 +9,5 @@ public class Localidad
     public int ProvinciaID  { get; set; }
     public string? Nombre { get; set; }
     public int CodigoPostal { get; set; }
+    public virtual Provincia Provincia { get; set; }
 }
