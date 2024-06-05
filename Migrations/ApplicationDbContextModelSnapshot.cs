@@ -224,6 +224,231 @@ namespace Postulate.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Postulate.Models.ContratoRespondido", b =>
+                {
+                    b.Property<int>("ContratoRespondidoID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContratoRespondidoID"));
+
+                    b.Property<bool>("Respuesta")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ServicioID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TrabajoID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ContratoRespondidoID");
+
+                    b.ToTable("ContratoRespondidos");
+                });
+
+            modelBuilder.Entity("Postulate.Models.Imagen", b =>
+                {
+                    b.Property<int>("ImagenID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ImagenID"));
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("Foto")
+                        .HasColumnType("tinyint");
+
+                    b.Property<string>("Titulo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ImagenID");
+
+                    b.ToTable("Imagen");
+                });
+
+            modelBuilder.Entity("Postulate.Models.Localidad", b =>
+                {
+                    b.Property<int>("LocalidadID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LocalidadID"));
+
+                    b.Property<int>("CodigoPostal")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProvinciaID")
+                        .HasColumnType("int");
+
+                    b.HasKey("LocalidadID");
+
+                    b.HasIndex("ProvinciaID");
+
+                    b.ToTable("Localidades");
+                });
+
+            modelBuilder.Entity("Postulate.Models.Persona", b =>
+                {
+                    b.Property<int>("PersonaID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PersonaID"));
+
+                    b.Property<string>("Apellido")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Documento")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Edad")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LocalidadID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Telefono")
+                        .HasColumnType("int");
+
+                    b.HasKey("PersonaID");
+
+                    b.HasIndex("LocalidadID");
+
+                    b.ToTable("Personas");
+                });
+
+            modelBuilder.Entity("Postulate.Models.Profesion", b =>
+                {
+                    b.Property<int>("ProfesionID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProfesionID"));
+
+                    b.Property<string>("Matricula")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ProfesionID");
+
+                    b.ToTable("Profesiones");
+                });
+
+            modelBuilder.Entity("Postulate.Models.Provincia", b =>
+                {
+                    b.Property<int>("ProvinciaID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProvinciaID"));
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ProvinciaID");
+
+                    b.ToTable("Provincias");
+                });
+
+            modelBuilder.Entity("Postulate.Models.Servicio", b =>
+                {
+                    b.Property<int>("ServicioID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ServicioID"));
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Herramienta")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ImagenID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Institucion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PersonaID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProfesionID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Titulo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ServicioID");
+
+                    b.HasIndex("ImagenID");
+
+                    b.HasIndex("PersonaID");
+
+                    b.HasIndex("ProfesionID");
+
+                    b.ToTable("Servicios");
+                });
+
+            modelBuilder.Entity("Postulate.Models.Trabajo", b =>
+                {
+                    b.Property<int>("TrabajoID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TrabajoID"));
+
+                    b.Property<string>("Comentario")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Direccion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Hora")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ImagenID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PersonaID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProfesionID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Valoracion")
+                        .HasColumnType("int");
+
+                    b.HasKey("TrabajoID");
+
+                    b.HasIndex("ImagenID");
+
+                    b.HasIndex("PersonaID");
+
+                    b.HasIndex("ProfesionID");
+
+                    b.ToTable("Trabajos");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -273,6 +498,111 @@ namespace Postulate.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Postulate.Models.Localidad", b =>
+                {
+                    b.HasOne("Postulate.Models.Provincia", "Provincia")
+                        .WithMany("Localidades")
+                        .HasForeignKey("ProvinciaID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Provincia");
+                });
+
+            modelBuilder.Entity("Postulate.Models.Persona", b =>
+                {
+                    b.HasOne("Postulate.Models.Localidad", "Localidad")
+                        .WithMany("Personas")
+                        .HasForeignKey("LocalidadID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Localidad");
+                });
+
+            modelBuilder.Entity("Postulate.Models.Servicio", b =>
+                {
+                    b.HasOne("Postulate.Models.Imagen", "Imagen")
+                        .WithMany("Servicio")
+                        .HasForeignKey("ImagenID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Postulate.Models.Persona", "Persona")
+                        .WithMany("Servicios")
+                        .HasForeignKey("PersonaID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Postulate.Models.Profesion", "Profesion")
+                        .WithMany("Servicios")
+                        .HasForeignKey("ProfesionID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Imagen");
+
+                    b.Navigation("Persona");
+
+                    b.Navigation("Profesion");
+                });
+
+            modelBuilder.Entity("Postulate.Models.Trabajo", b =>
+                {
+                    b.HasOne("Postulate.Models.Imagen", "Imagen")
+                        .WithMany("Trabajo")
+                        .HasForeignKey("ImagenID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Postulate.Models.Persona", "Persona")
+                        .WithMany()
+                        .HasForeignKey("PersonaID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Postulate.Models.Profesion", "Profesion")
+                        .WithMany("Trabajos")
+                        .HasForeignKey("ProfesionID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Imagen");
+
+                    b.Navigation("Persona");
+
+                    b.Navigation("Profesion");
+                });
+
+            modelBuilder.Entity("Postulate.Models.Imagen", b =>
+                {
+                    b.Navigation("Servicio");
+
+                    b.Navigation("Trabajo");
+                });
+
+            modelBuilder.Entity("Postulate.Models.Localidad", b =>
+                {
+                    b.Navigation("Personas");
+                });
+
+            modelBuilder.Entity("Postulate.Models.Persona", b =>
+                {
+                    b.Navigation("Servicios");
+                });
+
+            modelBuilder.Entity("Postulate.Models.Profesion", b =>
+                {
+                    b.Navigation("Servicios");
+
+                    b.Navigation("Trabajos");
+                });
+
+            modelBuilder.Entity("Postulate.Models.Provincia", b =>
+                {
+                    b.Navigation("Localidades");
                 });
 #pragma warning restore 612, 618
         }
