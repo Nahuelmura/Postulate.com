@@ -8466,24 +8466,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\BANGHO\\.nuget\\packages\\": {}
+    "C:\\Users\\crist\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\BANGHO\\Desktop\\Programacion 3\\Postulate\\Postulate.csproj",
+      "projectUniqueName": "C:\\Users\\crist\\OneDrive\\Escritorio\\PostulateFin\\Postulate.com\\Postulate.csproj",
       "projectName": "Postulate",
-      "projectPath": "C:\\Users\\BANGHO\\Desktop\\Programacion 3\\Postulate\\Postulate.csproj",
-      "packagesPath": "C:\\Users\\BANGHO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\BANGHO\\Desktop\\Programacion 3\\Postulate\\obj\\",
+      "projectPath": "C:\\Users\\crist\\OneDrive\\Escritorio\\PostulateFin\\Postulate.com\\Postulate.csproj",
+      "packagesPath": "C:\\Users\\crist\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\crist\\OneDrive\\Escritorio\\PostulateFin\\Postulate.com\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\BANGHO\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\crist\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -8496,11 +8498,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -8555,7 +8552,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -224,20 +224,48 @@ namespace Postulate.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Postulate.Models.Actividad", b =>
+            modelBuilder.Entity("Postulate.Models.ContratoRespondido", b =>
                 {
-                    b.Property<int>("ActividadID")
+                    b.Property<int>("ContratoRespondidoID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ActividadID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContratoRespondidoID"));
 
-                    b.Property<string>("Nombre")
+                    b.Property<bool>("Respuesta")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ServicioID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TrabajoID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ContratoRespondidoID");
+
+                    b.ToTable("ContratoRespondidos");
+                });
+
+            modelBuilder.Entity("Postulate.Models.Imagen", b =>
+                {
+                    b.Property<int>("ImagenID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ImagenID"));
+
+                    b.Property<string>("Descripcion")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ActividadID");
+                    b.Property<byte>("Foto")
+                        .HasColumnType("tinyint");
 
-                    b.ToTable("Actividades");
+                    b.Property<string>("Titulo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ImagenID");
+
+                    b.ToTable("Imagen");
                 });
 
             modelBuilder.Entity("Postulate.Models.Localidad", b =>
@@ -287,8 +315,8 @@ namespace Postulate.Migrations
                     b.Property<int>("LocalidadID")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProvinciaID")
-                        .HasColumnType("int");
+                    b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Telefono")
                         .HasColumnType("int");
@@ -296,8 +324,6 @@ namespace Postulate.Migrations
                     b.HasKey("PersonaID");
 
                     b.HasIndex("LocalidadID");
-
-                    b.HasIndex("ProvinciaID");
 
                     b.ToTable("Personas");
                 });
@@ -337,35 +363,6 @@ namespace Postulate.Migrations
                     b.ToTable("Provincias");
                 });
 
-            modelBuilder.Entity("Postulate.Models.Resenia", b =>
-                {
-                    b.Property<int>("ReseniaID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReseniaID"));
-
-                    b.Property<string>("Descripcion")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ServicioID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TrabajoID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Valoracion")
-                        .HasColumnType("int");
-
-                    b.HasKey("ReseniaID");
-
-                    b.HasIndex("ServicioID");
-
-                    b.HasIndex("TrabajoID");
-
-                    b.ToTable("Resenias");
-                });
-
             modelBuilder.Entity("Postulate.Models.Servicio", b =>
                 {
                     b.Property<int>("ServicioID")
@@ -380,8 +377,8 @@ namespace Postulate.Migrations
                     b.Property<bool>("Herramienta")
                         .HasColumnType("bit");
 
-                    b.Property<byte>("Imagen")
-                        .HasColumnType("tinyint");
+                    b.Property<int>("ImagenID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Institucion")
                         .HasColumnType("nvarchar(max)");
@@ -396,6 +393,8 @@ namespace Postulate.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ServicioID");
+
+                    b.HasIndex("ImagenID");
 
                     b.HasIndex("PersonaID");
 
@@ -412,8 +411,8 @@ namespace Postulate.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TrabajoID"));
 
-                    b.Property<int>("ActividadID")
-                        .HasColumnType("int");
+                    b.Property<string>("Comentario")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Descripcion")
                         .HasColumnType("nvarchar(max)");
@@ -421,17 +420,31 @@ namespace Postulate.Migrations
                     b.Property<string>("Direccion")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Horarios")
+                    b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Hora")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ImagenID")
+                        .HasColumnType("int");
 
                     b.Property<int>("PersonaID")
                         .HasColumnType("int");
 
+                    b.Property<int>("ProfesionID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Valoracion")
+                        .HasColumnType("int");
+
                     b.HasKey("TrabajoID");
 
-                    b.HasIndex("ActividadID");
+                    b.HasIndex("ImagenID");
 
                     b.HasIndex("PersonaID");
+
+                    b.HasIndex("ProfesionID");
 
                     b.ToTable("Trabajos");
                 });
@@ -490,7 +503,7 @@ namespace Postulate.Migrations
             modelBuilder.Entity("Postulate.Models.Localidad", b =>
                 {
                     b.HasOne("Postulate.Models.Provincia", "Provincia")
-                        .WithMany()
+                        .WithMany("Localidades")
                         .HasForeignKey("ProvinciaID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -501,54 +514,35 @@ namespace Postulate.Migrations
             modelBuilder.Entity("Postulate.Models.Persona", b =>
                 {
                     b.HasOne("Postulate.Models.Localidad", "Localidad")
-                        .WithMany()
+                        .WithMany("Personas")
                         .HasForeignKey("LocalidadID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Postulate.Models.Provincia", "Provincia")
-                        .WithMany()
-                        .HasForeignKey("ProvinciaID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Localidad");
-
-                    b.Navigation("Provincia");
-                });
-
-            modelBuilder.Entity("Postulate.Models.Resenia", b =>
-                {
-                    b.HasOne("Postulate.Models.Servicio", "Servicio")
-                        .WithMany()
-                        .HasForeignKey("ServicioID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Postulate.Models.Trabajo", "Trabajo")
-                        .WithMany()
-                        .HasForeignKey("TrabajoID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Servicio");
-
-                    b.Navigation("Trabajo");
                 });
 
             modelBuilder.Entity("Postulate.Models.Servicio", b =>
                 {
+                    b.HasOne("Postulate.Models.Imagen", "Imagen")
+                        .WithMany("Servicio")
+                        .HasForeignKey("ImagenID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Postulate.Models.Persona", "Persona")
-                        .WithMany()
+                        .WithMany("Servicios")
                         .HasForeignKey("PersonaID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Postulate.Models.Profesion", "Profesion")
-                        .WithMany()
+                        .WithMany("Servicios")
                         .HasForeignKey("ProfesionID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Imagen");
 
                     b.Navigation("Persona");
 
@@ -557,9 +551,9 @@ namespace Postulate.Migrations
 
             modelBuilder.Entity("Postulate.Models.Trabajo", b =>
                 {
-                    b.HasOne("Postulate.Models.Actividad", "Actividad")
-                        .WithMany()
-                        .HasForeignKey("ActividadID")
+                    b.HasOne("Postulate.Models.Imagen", "Imagen")
+                        .WithMany("Trabajo")
+                        .HasForeignKey("ImagenID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -569,9 +563,46 @@ namespace Postulate.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Actividad");
+                    b.HasOne("Postulate.Models.Profesion", "Profesion")
+                        .WithMany("Trabajos")
+                        .HasForeignKey("ProfesionID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Imagen");
 
                     b.Navigation("Persona");
+
+                    b.Navigation("Profesion");
+                });
+
+            modelBuilder.Entity("Postulate.Models.Imagen", b =>
+                {
+                    b.Navigation("Servicio");
+
+                    b.Navigation("Trabajo");
+                });
+
+            modelBuilder.Entity("Postulate.Models.Localidad", b =>
+                {
+                    b.Navigation("Personas");
+                });
+
+            modelBuilder.Entity("Postulate.Models.Persona", b =>
+                {
+                    b.Navigation("Servicios");
+                });
+
+            modelBuilder.Entity("Postulate.Models.Profesion", b =>
+                {
+                    b.Navigation("Servicios");
+
+                    b.Navigation("Trabajos");
+                });
+
+            modelBuilder.Entity("Postulate.Models.Provincia", b =>
+                {
+                    b.Navigation("Localidades");
                 });
 #pragma warning restore 612, 618
         }
