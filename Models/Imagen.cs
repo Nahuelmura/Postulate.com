@@ -5,13 +5,13 @@ namespace Postulate.Models;
 public class Imagen
 {
     [Key]
-    public int ImagenID { get; set; }
+    public int? ImagenID { get; set; }
 
     public string? Titulo { get; set; }
 
     public string? Descripcion { get; set; }
 
-    public byte Foto { get; set; }
+    public byte? Foto { get; set; }
 
     
 

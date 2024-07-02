@@ -12,8 +12,8 @@ using Postulate.Data;
 namespace Postulate.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240619221546_Inicial_4")]
-    partial class Inicial_4
+    [Migration("20240630212203_Migracion_ImgServicio")]
+    partial class Migracion_ImgServicio
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -251,16 +251,16 @@ namespace Postulate.Migrations
 
             modelBuilder.Entity("Postulate.Models.Imagen", b =>
                 {
-                    b.Property<int>("ImagenID")
+                    b.Property<int?>("ImagenID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ImagenID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("ImagenID"));
 
                     b.Property<string>("Descripcion")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte>("Foto")
+                    b.Property<byte?>("Foto")
                         .HasColumnType("tinyint");
 
                     b.Property<string>("Titulo")
@@ -380,7 +380,7 @@ namespace Postulate.Migrations
                     b.Property<bool>("Herramienta")
                         .HasColumnType("bit");
 
-                    b.Property<int>("ImagenID")
+                    b.Property<int?>("ImagenID")
                         .HasColumnType("int");
 
                     b.Property<string>("Institucion")
@@ -529,9 +529,7 @@ namespace Postulate.Migrations
                 {
                     b.HasOne("Postulate.Models.Imagen", "Imagen")
                         .WithMany("Servicio")
-                        .HasForeignKey("ImagenID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ImagenID");
 
                     b.HasOne("Postulate.Models.Persona", "Persona")
                         .WithMany("Servicios")

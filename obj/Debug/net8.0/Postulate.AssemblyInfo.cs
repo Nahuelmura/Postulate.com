@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Postulate")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+97ba4fcdbfbe0434b4512210a36443e43729463a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9427302ff7f440dc4b2b6bb39bfa6951599988c8")]
 [assembly: System.Reflection.AssemblyProductAttribute("Postulate")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Postulate")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

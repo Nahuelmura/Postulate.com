@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Postulate.Migrations
 {
     /// <inheritdoc />
-    public partial class Inicial_4 : Migration
+    public partial class Migracion_ImgServicio : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -73,7 +73,7 @@ namespace Postulate.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Titulo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Foto = table.Column<byte>(type: "tinyint", nullable: false)
+                    Foto = table.Column<byte>(type: "tinyint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -267,7 +267,7 @@ namespace Postulate.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PersonaID = table.Column<int>(type: "int", nullable: false),
                     ProfesionID = table.Column<int>(type: "int", nullable: false),
-                    ImagenID = table.Column<int>(type: "int", nullable: false),
+                    ImagenID = table.Column<int>(type: "int", nullable: true),
                     Herramienta = table.Column<bool>(type: "bit", nullable: false),
                     Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Titulo = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -280,8 +280,7 @@ namespace Postulate.Migrations
                         name: "FK_Servicios_Imagen_ImagenID",
                         column: x => x.ImagenID,
                         principalTable: "Imagen",
-                        principalColumn: "ImagenID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ImagenID");
                     table.ForeignKey(
                         name: "FK_Servicios_Personas_PersonaID",
                         column: x => x.PersonaID,
